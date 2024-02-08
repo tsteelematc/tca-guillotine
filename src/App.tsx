@@ -8,27 +8,8 @@ import {
 } from "react-router-dom";
 
 import { Home } from './Home';
-
-const Setup = () => {
-  return (
-    <h3>
-      Setup
-    </h3>
-  );
-};
-
-const Play = () => {
-  return (
-    <>
-      <h3>
-        Play
-      </h3>
-      <p>
-        Play the game and tap the app ! ! !
-      </p>
-    </>
-  );
-};
+import { Setup } from './Setup';
+import { Play } from './Play';
 
 const App = () => {
 
