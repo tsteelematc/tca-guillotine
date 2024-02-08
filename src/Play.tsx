@@ -1,4 +1,8 @@
+import { useNavigate } from 'react-router-dom';
+
 export const Play = () => {
+    const nav = useNavigate();
+
     return (
       <>
         <h3>
@@ -9,6 +13,7 @@ export const Play = () => {
         </p>
         <button
             className="btn btn-outline btn-primary"
+            onClick={() => true ? nav(-2) : nav('/home')}
         >
             Done
         </button>
