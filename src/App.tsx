@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -54,11 +54,20 @@ const dummyGameResults: GameResult[] = [
 
 const App = () => {
 
+  const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+
+  const addNewGameResult = (result: GameResult) => setGameResults(
+    [
+      ...gameResults
+      , result
+    ]
+  );
+
   const router = createHashRouter([
     {
       path: "/",
       element: <Home
-        leaderboardData={getLeaderboard(dummyGameResults)}
+        leaderboardData={getLeaderboard(gameResults)}
       />
     },
     {
@@ -67,7 +76,9 @@ const App = () => {
     },
     {
       path: "/play",
-      element: <Play />
+      element: <Play 
+          addNewGameResult={addNewGameResult}
+        />
     },
   ]);  
 
