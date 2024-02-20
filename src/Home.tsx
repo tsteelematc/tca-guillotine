@@ -36,13 +36,32 @@ export const Home: FC<HomeProps> = ({ leaderboardData }) => {
                     </h2>
                     {
                         leaderboardData.length > 0
-                        ? leaderboardData.map(x => (
-                            <p>
-                                {
-                                    x.name
-                                }
-                            </p>
-                        ))
+                        ? (
+                            <table
+                                className='table'
+                            >
+                                <thead>
+                                    <tr>
+                                        <th>W</th>
+                                        <th>L</th>
+                                        <th>AVG</th>
+                                        <th>PLAYER</th>
+                                    </tr>
+                                </thead>
+                                <tbody>
+                                    {
+                                        leaderboardData.map(lbe => (
+                                            <tr>
+                                                <td>{ lbe.wins }</td>
+                                                <td>{ lbe.losses }</td>
+                                                <td>{ lbe.avg }</td>
+                                                <td>{ lbe.name }</td>
+                                            </tr>
+                                        ))
+                                    }
+                                </tbody>
+                            </table>
+                        )
                         : (
                             <p>
                                 Play a game to see the leaderboard!
