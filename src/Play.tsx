@@ -1,12 +1,18 @@
 import { useNavigate } from 'react-router-dom';
 import { GameResult } from './GameResults';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 
 interface PlayProps {
   addNewGameResult: (result: GameResult) => void;
+  setTitle: (t: string) => void;
 }
 
-export const Play: FC<PlayProps> = ({ addNewGameResult }) => {
+export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
+
+    useEffect(
+      () => setTitle("Play Guillotine")
+      , []
+    );
 
     const nav = useNavigate();
 

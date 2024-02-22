@@ -1,6 +1,16 @@
+import { FC, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
-export const Setup = () => {
+interface SetupProps {
+    setTitle: (t: string) => void;
+};
+
+export const Setup: FC<SetupProps> = ({ setTitle }) => {
+
+    useEffect(
+        () => setTitle("Game Setup")
+        , []
+    );
 
     const nav = useNavigate();
 
