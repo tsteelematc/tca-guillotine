@@ -37,6 +37,41 @@ export const Home: FC<HomeProps> = ({ leaderboardData, setTitle }) => {
                     <h2
                         className='card-title'
                     >
+                        General
+                    </h2>
+                    <table
+                        className='table'
+                    >
+                        <tbody>
+                            <tr>
+                                <td>Total Games</td>
+                                <td>10</td>
+                            </tr>
+                            <tr>
+                                <td>Last Played</td>
+                                <td>2d ago</td>
+                            </tr>
+                            <tr>
+                                <td>Shortest Game</td>
+                                <td>3m 25s</td>
+                            </tr>
+                            <tr>
+                                <td>Longest Game</td>
+                                <td>10m 12s</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            <div
+                className='card bg-base-100 shadow-xl'
+            >
+                <div
+                    className='card-body p-3'
+                >
+                    <h2
+                        className='card-title'
+                    >
                         Leaderboard
                     </h2>
                     {
