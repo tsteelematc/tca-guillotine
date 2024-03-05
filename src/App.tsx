@@ -46,7 +46,6 @@ const App = () => {
 
   // Uncomment this line to see app running without any game results...
   // const [gameResults, setGameResults] = useState<GameResult[]>([]);
-  
   const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
 
   const [title, setTitle] = useState(AppTitle);
