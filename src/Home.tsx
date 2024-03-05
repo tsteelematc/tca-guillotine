@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { LeaderboardEntry } from './GameResults';
+import { GeneralFacts, LeaderboardEntry } from './GameResults';
 import { FC, useEffect } from 'react';
 
 export const AppTitle = "Guillotine Companion App";
@@ -7,9 +7,14 @@ export const AppTitle = "Guillotine Companion App";
 interface HomeProps {
     leaderboardData: LeaderboardEntry[];
     setTitle: (t: string) => void;
+    generalFacts: GeneralFacts;
 }
 
-export const Home: FC<HomeProps> = ({ leaderboardData, setTitle }) => {
+export const Home: FC<HomeProps> = ({ 
+    leaderboardData
+    , setTitle
+    , generalFacts 
+}) => {
 
     useEffect(
         () => setTitle(AppTitle)
@@ -45,19 +50,19 @@ export const Home: FC<HomeProps> = ({ leaderboardData, setTitle }) => {
                         <tbody>
                             <tr>
                                 <td>Total Games</td>
-                                <td>10</td>
+                                <td>{generalFacts.totalGames}</td>
                             </tr>
                             <tr>
                                 <td>Last Played</td>
-                                <td>2d ago</td>
+                                <td>{generalFacts.lastPlayed}d ago</td>
                             </tr>
                             <tr>
                                 <td>Shortest Game</td>
-                                <td>3m 25s</td>
+                                <td>{generalFacts.shortestGame}m</td>
                             </tr>
                             <tr>
                                 <td>Longest Game</td>
-                                <td>10m 12s</td>
+                                <td>{generalFacts.longestGame}m</td>
                             </tr>
                         </tbody>
                     </table>
