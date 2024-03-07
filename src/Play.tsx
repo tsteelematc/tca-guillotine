@@ -10,6 +10,11 @@ interface PlayProps {
 export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
 
     const [start, setStart] = useState(new Date().toISOString());
+    // console.log(start);
+
+    // const start = new Date().toISOString();
+
+    const [turnNumber, setTurnNumber] = useState(1);
 
     useEffect(
       () => setTitle("Play Guillotine")
@@ -33,6 +38,7 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
                 ]
                 , start: start
                 , end: new Date().toISOString()
+                // , totalTurns: turnNumber
               });
               nav(-2);
             }}
@@ -43,7 +49,16 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
           className='text-xs'
         >
           Play the game and tap the app ! ! !
-        </p>        
+        </p>
+        <p>
+          Current Turn: asdfasdfasdfasdf
+        </p>
+        <button
+          className='btn btn-link'
+          onClick={() => setTurnNumber(turnNumber + 1)}
+        >
+          Next Turn
+        </button>
       </div>
     );
   };
