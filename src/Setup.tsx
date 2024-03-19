@@ -2,13 +2,15 @@ import { FC, useEffect, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 
 interface SetupProps {
-    setTitle: (t: string) => void;
+    setTitle: (title: string) => void;
     previousPlayers: string[];
+    setChosenPlayers: (players: string[]) => void;
 };
 
 export const Setup: FC<SetupProps> = ({
     setTitle
     , previousPlayers
+    , setChosenPlayers
 }) => {
 
     const [availablePlayers, setAvailablePlayers] = useState(previousPlayers.map(x => ({
@@ -29,7 +31,16 @@ export const Setup: FC<SetupProps> = ({
         >
             <button
                 className="btn btn-lg btn-primary"
-                onClick={() => nav('/play')}
+                onClick={
+                    () => {
+                        setChosenPlayers(
+                            availablePlayers
+                                .filter(x => x.checked)
+                                .map(x => x.name)
+                        );
+                        nav('/play');
+                    }
+                }
                 disabled={availablePlayers.filter(x => x.checked).length < 2}
             >
                 Start the Game

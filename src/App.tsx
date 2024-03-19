@@ -51,6 +51,8 @@ const App = () => {
 
   const [title, setTitle] = useState(AppTitle);
 
+  const [chosenPlayers, setChosenPlayers] = useState<string[]>([]);
+
   const addNewGameResult = (result: GameResult) => setGameResults(
     [
       ...gameResults
@@ -72,6 +74,7 @@ const App = () => {
       element: <Setup 
         setTitle={setTitle}
         previousPlayers={getPreviousPlayers(gameResults)}
+        setChosenPlayers={setChosenPlayers}
       />
     },
     {
@@ -79,6 +82,7 @@ const App = () => {
       element: <Play 
           addNewGameResult={addNewGameResult}
           setTitle={setTitle}
+          chosenPlayers={chosenPlayers}
         />
     },
   ]);  
