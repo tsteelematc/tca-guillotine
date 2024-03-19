@@ -54,15 +54,15 @@ export const Setup: FC<SetupProps> = ({
                     {
                         availablePlayers.map(x => (
                             <div 
-                                className="form-control"
+                                className="form-control mb-5"
                                 key={x.name}
                             >
                                 <label 
-                                    className="flex cursor-pointer"
+                                    className="flex items-center cursor-pointer"
                                 >
                                     <input 
                                         type="checkbox" 
-                                        className="checkbox checkbox-primary"
+                                        className="checkbox checkbox-lg checkbox-primary"
                                         checked={x.checked} 
                                         onChange={() => setAvailablePlayers([
                                             ...availablePlayers.map(y => ({
@@ -74,7 +74,7 @@ export const Setup: FC<SetupProps> = ({
                                         ])}
                                     />
                                     <span 
-                                        className="label-text ml-3"
+                                        className="label-text ml-5 text-lg"
                                     >
                                         {x.name}
                                     </span> 
