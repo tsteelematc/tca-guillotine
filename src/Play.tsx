@@ -51,7 +51,7 @@ export const Play: FC<PlayProps> = ({ addNewGameResult, setTitle }) => {
           Play the game and tap the app ! ! !
         </p>
         <p>
-          Current Turn: asdfasdfasdfasdf
+          Current Turn: {turnNumber}
         </p>
         <button
           className='btn btn-link'
