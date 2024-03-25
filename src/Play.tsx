@@ -8,68 +8,136 @@ interface PlayProps {
   chosenPlayers: string[];
 }
 
-export const Play: FC<PlayProps> = ({ 
+const notableNobles = [
+  "Piss Boy"
+  , "King Louis IV"
+  , "Marie Antionette"
+  , "Count"
+  , "Countess"
+];
+
+export const Play: FC<PlayProps> = ({
   addNewGameResult
-  , setTitle 
+  , setTitle
   , chosenPlayers
 }) => {
 
-    const [start, setStart] = useState(new Date().toISOString());
-    // console.log(start);
+  const [start, setStart] = useState(new Date().toISOString());
+  // console.log(start);
 
-    // const start = new Date().toISOString();
+  // const start = new Date().toISOString();
 
-    const [turnNumber, setTurnNumber] = useState(1);
+  const [turnNumber, setTurnNumber] = useState(1);
 
-    useEffect(
-      () => setTitle("Play Guillotine")
-      , []
-    );
+  // const [pissBoyPlayer, setPissBoyPlayer] = useState("");
 
-    const nav = useNavigate();
+  const [notableNoblesWithPlayers, setNotableNoblesWithPlayers] = useState(
+    notableNobles
+      .sort((a, b) => a.localeCompare(b))
+      .map(x => ({
+        nobleName: x
+        , playerName: ""
+      }))
+  );
 
-    // Local helper funcs just before JSX...
+  useEffect(
+    () => setTitle("Play Guillotine")
+    , []
+  );
 
-    const gameOver = (winner: string) => {
-      addNewGameResult({
-        winner: winner
-        , players: chosenPlayers
-        , start: start
-        , end: new Date().toISOString()
-      });
-      nav(-2);
-    };
+  const nav = useNavigate();
 
-    return (
-      <div
-        className='flex flex-col gap-3'
-      >
-        {
-          chosenPlayers.map(x => (
-            <button
-                key={x}
-                className="btn btn-lg btn-primary"
-                onClick={() => gameOver(x)}
-            >
-                {x} Won
-            </button>
+  // Local helper funcs just before JSX...
 
-          ))
-        }
-        <p
-          className='text-xs'
-        >
-          Play the game and tap the app ! ! !
-        </p>
-        <p>
-          Current Turn: {turnNumber}
-        </p>
-        <button
-          className='btn btn-link'
-          onClick={() => setTurnNumber(turnNumber + 1)}
-        >
-          Next Turn
-        </button>
-      </div>
-    );
+  const gameOver = (winner: string) => {
+    addNewGameResult({
+      winner: winner
+      , players: chosenPlayers
+      , start: start
+      , end: new Date().toISOString()
+    });
+    nav(-2);
   };
+
+  return (
+    <div
+      className='flex flex-col gap-3'
+    >
+      {
+        chosenPlayers.map(x => (
+          <div
+            className='card bg-base-100 shadow-xl'
+          >
+            <div
+              className='card-body p-3'
+            >
+              <h2
+                className='card-title'
+              >
+                {x}
+              </h2>
+              <p
+                className='text-neutral-content'
+              >
+                Notable Nobles
+              </p>
+              <div
+                className='flex flex-col my-5 gap-5'
+              >
+                {
+                  notableNoblesWithPlayers.map(y => (
+                    <div
+                      className="form-control"
+                    >
+                      <label
+                        className="flex items-center cursor-pointer"
+                      >
+                        <input
+                          type="checkbox"
+                          className="checkbox"
+                          checked={y.playerName === x}
+                          onChange={() => setNotableNoblesWithPlayers(
+                            notableNoblesWithPlayers.map(z => ({
+                              nobleName: z.nobleName
+                              , playerName: y.nobleName === z.nobleName ? x : z.playerName
+                            }))
+                          )}
+                        />
+                        <span
+                          className="label-text ml-5 text-md"
+                        >
+                          {y.nobleName}
+                        </span>
+                      </label>
+                    </div>
+                  ))
+                }
+              </div>
+              <button
+                key={x}
+                className="btn btn-outline btn-primary"
+                onClick={() => gameOver(x)}
+              >
+                {x} Won
+              </button>
+            </div>
+          </div>
+        ))
+      }
+      <p
+        className='text-xs'
+      >
+        Play the game and tap the app ! ! !
+      </p>
+      <p>
+        Current Turn: {turnNumber}
+      </p>
+      <button
+        className='btn btn-link'
+        onClick={() => setTurnNumber(turnNumber + 1)}
+      >
+        Next Turn
+      </button>
+    </div>
+  );
+};
