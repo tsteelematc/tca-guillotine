@@ -1,32 +1,38 @@
-import { durationFormatter } from 'human-readable';
+import { durationFormatter } from "human-readable";
 
 const formatterDefault = durationFormatter();
 const formatterYMD = durationFormatter({
-    allowMultiples: ['y', 'mo', 'd']
+  allowMultiples: ["y", "mo", "d"],
 });
 
 //
 // Type definitions...
 //
 export type GameResult = {
-    winner: string;
-    players: string[];
-    start: string;
-    end: string;    
+  winner: string;
+  players: string[];
+  start: string;
+  end: string;
+  notableNoblesWithPlayers: NotableNobleWithPlayer[];
 };
 
 export type LeaderboardEntry = {
-    wins: number;
-    losses: number;
-    avg: number;
-    name: string;
+  wins: number;
+  losses: number;
+  avg: number;
+  name: string;
 };
 
 export type GeneralFacts = {
-    totalGames: number;
-    lastPlayed: string;
-    shortestGame: string;
-    longestGame: string;
+  totalGames: number;
+  lastPlayed: string;
+  shortestGame: string;
+  longestGame: string;
+};
+
+type NotableNobleWithPlayer = {
+  nobleName: string;
+  playerName: string;
 };
 
 //
@@ -34,89 +40,84 @@ export type GeneralFacts = {
 //
 
 export const getPreviousPlayers = (results: GameResult[]) => {
+  const previousPlayers = results.flatMap((x) => x.players);
 
-    const previousPlayers = results.flatMap(
-        x => x.players
-    );
-
-    return [
-        ...new Set(previousPlayers)
-    ].sort(
-        (a, b) => a.localeCompare(b)
-    );
-
+  return [...new Set(previousPlayers)].sort((a, b) => a.localeCompare(b));
 };
 
 export const getLeaderboard = (results: GameResult[]): LeaderboardEntry[] => {
-    
-    const players = getPreviousPlayers(results);
-    
-    return players.map(
-        x => getLeaderboardEntryForPlayer(results, x)
-    ).sort(
-        // (a, b) => b.avg - a.avg
+  const players = getPreviousPlayers(results);
 
-        // i-o-g
-        (a, b) => (b.avg * 1000 + b.wins + b.losses) - (a.avg * 1000 + a.wins + a.losses)
+  return players
+    .map((x) => getLeaderboardEntryForPlayer(results, x))
+    .sort(
+      // (a, b) => b.avg - a.avg
+
+      // i-o-g
+      (a, b) =>
+        b.avg * 1000 + b.wins + b.losses - (a.avg * 1000 + a.wins + a.losses)
     );
 };
 
 export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
+  const now = Date.now();
 
-    const now = Date.now();
+  const gameEndDatesInMilliseconds = results.map((x) => Date.parse(x.end));
 
-    const gameEndDatesInMilliseconds = results.map(
-        x => Date.parse(x.end)
+  const gameDurationsInMilliseconds = results.map(
+    (x) => Date.parse(x.end) - Date.parse(x.start)
+  );
+
+  return {
+    totalGames: results.length,
+    lastPlayed: results.length
+      ? `${formatterYMD(now - Math.max(...gameEndDatesInMilliseconds))} ago`
+      : "n/a",
+    shortestGame: results.length
+      ? (formatterDefault(Math.min(...gameDurationsInMilliseconds)) as string)
+      : "n/a",
+    longestGame: results.length
+      ? (formatterDefault(Math.max(...gameDurationsInMilliseconds)) as string)
+      : "n/a",
+  };
+};
+
+export const getPissBoyLeaderboard = (results: GameResult[]) => {
+  const playersWithPissBoyCount = results
+    .flatMap(
+      (x) =>
+        x.notableNoblesWithPlayers.find((x) => x.nobleName === "Piss Boy")
+          ?.playerName ?? ""
+    )
+    .filter((x) => x.length > 0)
+    .sort((a, b) => a.localeCompare(b))
+    .reduce(
+      (acc, x) => acc.set(x, (acc.get(x) ?? 0) + 1),
+      new Map<string, number>()
     );
 
-    const gameDurationsInMilliseconds = results.map(
-        x => Date.parse(x.end) - Date.parse(x.start)
-    );
-
-    return {
-        totalGames: results.length
-        , lastPlayed:
-            results.length
-                ? `${formatterYMD(
-                    now - Math.max(...gameEndDatesInMilliseconds)
-                )} ago`
-                : "n/a"
-        , shortestGame:
-            results.length
-                ? formatterDefault(
-                    Math.min(...gameDurationsInMilliseconds)
-                ) as string
-                : "n/a"
-        , longestGame:
-            results.length
-                ? formatterDefault(
-                    Math.max(...gameDurationsInMilliseconds)
-                ) as string
-                : "n/a"
-    };
+  return [...playersWithPissBoyCount].sort((a, b) => b[1] - a[1]);
 };
 
 //
 // Internal functions...
 //
 
-const getLeaderboardEntryForPlayer = (results: GameResult[], player: string): LeaderboardEntry => {
+const getLeaderboardEntryForPlayer = (
+  results: GameResult[],
+  player: string
+): LeaderboardEntry => {
+  const playerWins = results.filter((x) => x.winner === player).length;
+  const playerGames = results.filter((x) =>
+    x.players.some((y) => y === player)
+  ).length;
 
-    const playerWins = results.filter(x => x.winner === player).length;
-    const playerGames = results.filter(
-        x => x.players.some(
-            y => y === player
-        )
-    ).length;
+  return {
+    wins: playerWins,
+    losses: playerGames - playerWins,
 
-    return {
-        wins: playerWins
-        , losses: playerGames - playerWins
+    avg: playerGames > 0 ? playerWins / playerGames : 0,
 
-        , avg: playerGames > 0
-            ? playerWins / playerGames
-            : 0
-            
-        , name: player
-    };
+    name: player,
+  };
 };

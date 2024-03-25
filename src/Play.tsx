@@ -58,6 +58,7 @@ export const Play: FC<PlayProps> = ({
       , players: chosenPlayers
       , start: start
       , end: new Date().toISOString()
+      , notableNoblesWithPlayers: notableNoblesWithPlayers
     });
     nav(-2);
   };
