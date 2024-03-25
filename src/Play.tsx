@@ -30,14 +30,17 @@ export const Play: FC<PlayProps> = ({
   const [turnNumber, setTurnNumber] = useState(1);
 
   // const [pissBoyPlayer, setPissBoyPlayer] = useState("");
-
   const [notableNoblesWithPlayers, setNotableNoblesWithPlayers] = useState(
     notableNobles
-      .sort((a, b) => a.localeCompare(b))
-      .map(x => ({
-        nobleName: x
-        , playerName: ""
-      }))
+      .sort(
+        (a, b) => a.localeCompare(b)
+      )
+      .map(
+        x => ({
+          nobleName: x
+          , playerName: ""
+        })
+      )
   );
 
   useEffect(
