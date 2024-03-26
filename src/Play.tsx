@@ -16,6 +16,8 @@ export const Play: FC<PlayProps> = ({
 
   const [start, setStart] = useState(new Date().toISOString());
 
+  const [pissBoyPlayer, setPissBoyPlayer] = useState("");
+
   useEffect(
     () => setTitle("Play Guillotine")
     , []
@@ -56,9 +58,30 @@ export const Play: FC<PlayProps> = ({
               <div
                 className='flex flex-col gap-3 mt-3'
               >
-                <p>Foo</p>
-                <p>Bar</p>
-                <p>Cat</p>
+                <p
+                  className='text-neutral-content'
+                >
+                  Notable Nobles
+                </p>
+                <div
+                  className="form-control mb-5"
+                >
+                  <label
+                    className="flex items-center cursor-pointer"
+                  >
+                    <input
+                      type="checkbox"
+                      className="checkbox checkbox-md checkbox-primary"
+                      checked={x === pissBoyPlayer}
+                      onChange={() => setPissBoyPlayer(x)}
+                    />
+                    <span
+                      className="label-text ml-5 text-md"
+                    >
+                      Piss Boy
+                    </span>
+                  </label>
+                </div>
               </div>
               <button
                 key={x}
