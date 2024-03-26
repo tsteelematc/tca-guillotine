@@ -8,49 +8,69 @@ interface PlayProps {
   chosenPlayers: string[];
 }
 
-export const Play: FC<PlayProps> = ({ 
+export const Play: FC<PlayProps> = ({
   addNewGameResult
-  , setTitle 
+  , setTitle
   , chosenPlayers
 }) => {
 
-    const [start, setStart] = useState(new Date().toISOString());
+  const [start, setStart] = useState(new Date().toISOString());
 
-    useEffect(
-      () => setTitle("Play Guillotine")
-      , []
-    );
+  useEffect(
+    () => setTitle("Play Guillotine")
+    , []
+  );
 
-    const nav = useNavigate();
+  const nav = useNavigate();
 
-    // Local helper funcs just before JSX...
+  // Local helper funcs just before JSX...
 
-    const gameOver = (winner: string) => {
-      addNewGameResult({
-        winner: winner
-        , players: chosenPlayers
-        , start: start
-        , end: new Date().toISOString()
-      });
-      nav(-2);
-    };
-
-    return (
-      <div
-        className='flex flex-col gap-3'
-      >
-        {
-          chosenPlayers.map(x => (
-            <button
-                key={x}
-                className="btn btn-lg btn-primary"
-                onClick={() => gameOver(x)}
-            >
-                {x} Won
-            </button>
-
-          ))
-        }
-      </div>
-    );
+  const gameOver = (winner: string) => {
+    addNewGameResult({
+      winner: winner
+      , players: chosenPlayers
+      , start: start
+      , end: new Date().toISOString()
+    });
+    nav(-2);
   };
+
+  return (
+    <div
+      className='flex flex-col gap-3'
+    >
+      {
+        chosenPlayers.map(x => (
+          <div
+            key={x}
+            className='card bg-base-100 shadow-xl'
+          >
+            <div
+              className='card-body p-3'
+            >
+              <h2
+                className='card-title'
+              >
+                {x}
+              </h2>
+              <div
+                className='flex flex-col gap-3 mt-3'
+              >
+                <p>Foo</p>
+                <p>Bar</p>
+                <p>Cat</p>
+              </div>
+              <button
+                key={x}
+                className="btn btn-outline btn-primary my-3"
+                onClick={() => gameOver(x)}
+              >
+                {x} Won
+              </button>
+            </div>
+          </div>
+        ))
+      }
+    </div>
+  );
+};
