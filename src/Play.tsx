@@ -15,11 +15,6 @@ export const Play: FC<PlayProps> = ({
 }) => {
 
     const [start, setStart] = useState(new Date().toISOString());
-    // console.log(start);
-
-    // const start = new Date().toISOString();
-
-    const [turnNumber, setTurnNumber] = useState(1);
 
     useEffect(
       () => setTitle("Play Guillotine")
@@ -56,20 +51,6 @@ export const Play: FC<PlayProps> = ({
 
           ))
         }
-        <p
-          className='text-xs'
-        >
-          Play the game and tap the app ! ! !
-        </p>
-        <p>
-          Current Turn: {turnNumber}
-        </p>
-        <button
-          className='btn btn-link'
-          onClick={() => setTurnNumber(turnNumber + 1)}
-        >
-          Next Turn
-        </button>
       </div>
     );
   };
