@@ -12,7 +12,8 @@ export type GameResult = {
     winner: string;
     players: string[];
     start: string;
-    end: string;    
+    end: string;
+    pissBoyPlayer: string;
 };
 
 export type LeaderboardEntry = {
@@ -94,6 +95,27 @@ export const getGeneralFacts = (results: GameResult[]): GeneralFacts => {
                 ) as string
                 : "n/a"
     };
+};
+
+export const getPissBoyLeaderboard = (results: GameResult[]) => {
+    const playersWithPissBoyCount = results
+        .map(x => x.pissBoyPlayer)
+        .filter(x => x.length > 0)
+        .reduce(
+            (acc, x) => acc.set(
+                x 
+                , (acc.get(x) ?? 0) + 1
+            )
+            , new Map<string, number>()
+        )
+    ;
+
+    return [
+        ...playersWithPissBoyCount
+    ].sort(
+        (a, b) => b[1] - a[1]
+    );
+
 };
 
 //

@@ -33,6 +33,7 @@ export const Play: FC<PlayProps> = ({
       , players: chosenPlayers
       , start: start
       , end: new Date().toISOString()
+      , pissBoyPlayer: pissBoyPlayer
     });
     nav(-2);
   };

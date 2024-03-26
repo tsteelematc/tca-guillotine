@@ -29,6 +29,7 @@ const dummyGameResults: GameResult[] = [
       ]
       , start: "2024-02-28T18:10:32.123Z"
       , end: "2024-02-28T18:15:34.123Z"
+      , pissBoyPlayer: "Tom"
   }
   , {
       winner: "John"
@@ -40,6 +41,7 @@ const dummyGameResults: GameResult[] = [
       ]
       , start: "2024-02-28T18:20:32.123Z"
       , end: "2024-02-28T18:47:34.123Z"
+      , pissBoyPlayer: "Julia"
   }
 ];
 
