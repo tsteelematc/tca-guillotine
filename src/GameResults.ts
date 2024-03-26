@@ -101,6 +101,7 @@ export const getPissBoyLeaderboard = (results: GameResult[]) => {
     const playersWithPissBoyCount = results
         .map(x => x.pissBoyPlayer)
         .filter(x => x.length > 0)
+        .sort((a, b) => a.localeCompare(b))
         .reduce(
             (acc, x) => acc.set(
                 x 
