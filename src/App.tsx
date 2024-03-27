@@ -36,7 +36,14 @@ const dummyGameResults: GameResult[] = [
         , playerName: "Tom"
       }
     ]
-  }
+    , playerPoints: [
+      ["Tom", 20]
+      , ["Batu", 10]
+      , ["Julia", 10]
+      , ["Melisa", 10]
+      , ["John", 10]
+  ]
+}
   , {
     winner: "John"
     , players: [
@@ -52,6 +59,12 @@ const dummyGameResults: GameResult[] = [
         nobleName: "Piss Boy"
         , playerName: "John"
       }
+    ]
+    , playerPoints: [
+        ["Batu", 10]
+        , ["Julia", 10]
+        , ["Melisa", 10]
+        , ["John", 20]
     ]
   }
 ];

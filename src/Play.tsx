@@ -55,6 +55,7 @@ export const Play: FC<PlayProps> = ({
       , start: start
       , end: new Date().toISOString()
       , notableNoblesWithPlayers: notableNoblesWithPlayers
+      , playerPoints
     });
     nav(-2);
   };

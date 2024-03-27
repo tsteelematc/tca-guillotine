@@ -14,6 +14,7 @@ export type GameResult = {
   start: string;
   end: string;
   notableNoblesWithPlayers: NotableNobleWithPlayer[];
+  playerPoints: [string, number][];
 };
 
 export type LeaderboardEntry = {
