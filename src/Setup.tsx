@@ -71,7 +71,7 @@ export const Setup: FC<SetupProps> = ({
                 className='card bg-base-100 shadow-xl'
             >
                 <div
-                    className='card-body p-3'
+                    className='card-body overflow-x-hidden p-3'
                 >
                     <div
                         className='flex items-center mb-5'
