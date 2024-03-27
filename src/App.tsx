@@ -16,6 +16,7 @@ import {
   , getGeneralFacts
   , getPreviousPlayers
   , getPissBoyLeaderboard
+  , getPointFunFacts
 } from './GameResults';
 
 const dummyGameResults: GameResult[] = [
@@ -37,9 +38,9 @@ const dummyGameResults: GameResult[] = [
       }
     ]
     , playerPoints: [
-      ["Tom", 20]
-      , ["Batu", 10]
-      , ["Julia", 10]
+      ["Tom", 25]
+      , ["Batu", 3]
+      , ["Julia", 3]
       , ["Melisa", 10]
       , ["John", 10]
   ]
@@ -61,7 +62,7 @@ const dummyGameResults: GameResult[] = [
       }
     ]
     , playerPoints: [
-        ["Batu", 10]
+        ["Batu", 3]
         , ["Julia", 10]
         , ["Melisa", 10]
         , ["John", 20]
@@ -94,6 +95,7 @@ const App = () => {
         generalFacts={getGeneralFacts(gameResults)}
         setTitle={setTitle}
         pissBoyLeaderboard={getPissBoyLeaderboard(gameResults)}
+        pointFunFacts={getPointFunFacts(gameResults)}
       />
     },
     {

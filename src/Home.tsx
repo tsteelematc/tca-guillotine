@@ -1,5 +1,5 @@
 import { useNavigate } from 'react-router-dom';
-import { GeneralFacts, LeaderboardEntry } from './GameResults';
+import { GeneralFacts, LeaderboardEntry, PointFunFacts } from './GameResults';
 import { FC, useEffect } from 'react';
 
 export const AppTitle = "Guillotine Companion App";
@@ -9,6 +9,7 @@ interface HomeProps {
     setTitle: (t: string) => void;
     generalFacts: GeneralFacts;
     pissBoyLeaderboard: [string, number][];
+    pointFunFacts: PointFunFacts;
 }
 
 export const Home: FC<HomeProps> = ({
@@ -16,6 +17,7 @@ export const Home: FC<HomeProps> = ({
     , setTitle
     , generalFacts
     , pissBoyLeaderboard
+    , pointFunFacts
 }) => {
 
     useEffect(
@@ -159,6 +161,45 @@ export const Home: FC<HomeProps> = ({
                             : (
                                 <p>
                                     Play a game to see the Piss Boys!
+                                </p>
+                            )
+                    }
+                </div>
+            </div>
+            <div
+                className='card bg-base-100 shadow-xl'
+            >
+                <div
+                    className='card-body p-3'
+                >
+                    <h2
+                        className='card-title'
+                    >
+                        Best/Worst Players
+                    </h2>
+                    {
+                        pointFunFacts.maxPointPlayers.length > 0
+                            ? (
+                                <table
+                                    className='table'
+                                >
+                                    <tbody>
+                                        <tr>
+                                            <td>Most Points</td>
+                                            <td className='text-right'>{pointFunFacts.maxPointValue}</td>
+                                            <td>{pointFunFacts.maxPointPlayers}</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Fewest Points</td>
+                                            <td className='text-right'>{pointFunFacts.minPointValue}</td>
+                                            <td>{pointFunFacts.minPointPlayers}</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            )
+                            : (
+                                <p>
+                                    Play a game to see best/worst players!
                                 </p>
                             )
                     }
