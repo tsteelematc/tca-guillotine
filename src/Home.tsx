@@ -175,7 +175,7 @@ export const Home: FC<HomeProps> = ({
                     <h2
                         className='card-title text-nowrap'
                     >
-                        Best/Worst Players
+                        High/Low Scores
                     </h2>
                     {
                         pointFunFacts.maxPointPlayers.length > 0
@@ -185,12 +185,12 @@ export const Home: FC<HomeProps> = ({
                                 >
                                     <tbody>
                                         <tr>
-                                            <td>Most Points</td>
+                                            <td>High Score</td>
                                             <td className='text-right'>{pointFunFacts.maxPointValue}</td>
                                             <td>{pointFunFacts.maxPointPlayers}</td>
                                         </tr>
                                         <tr>
-                                            <td>Fewest Points</td>
+                                            <td>Low Score</td>
                                             <td className='text-right'>{pointFunFacts.minPointValue}</td>
                                             <td>{pointFunFacts.minPointPlayers}</td>
                                         </tr>
