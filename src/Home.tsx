@@ -205,6 +205,65 @@ export const Home: FC<HomeProps> = ({
                     }
                 </div>
             </div>
+            <div
+                className='card bg-base-100 shadow-xl'
+            >
+                <div
+                    className='card-body overflow-x-hidden p-3'
+                >
+                    <h2
+                        className='card-title text-nowrap'
+                    >
+                        Notable Nobles
+                    </h2>
+                    {
+                        true
+                            ? (
+                                <table
+                                    className='table'
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th>NOBLE/COMBINATION</th>
+                                            <th>IN % OF WINS</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        <tr>
+                                            <td>King Louis XVI</td>
+                                            <td>100%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Marie Antionette</td>
+                                            <td>100%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>King Louis XVI + Marie Antionette</td>
+                                            <td>100%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Count</td>
+                                            <td>100%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Countess</td>
+                                            <td>100%</td>
+                                        </tr>
+                                        <tr>
+                                            <td>Count + Countess</td>
+                                            <td>100%</td>
+                                        </tr>
+                                    </tbody>
+                                </table>
+                            )
+                            : (
+                                <p>
+                                    Lop some heads to see!
+                                </p>
+                            )
+                    }
+                </div>
+            </div>
         </div>
     );
 };
