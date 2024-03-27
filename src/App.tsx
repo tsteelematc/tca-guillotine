@@ -122,7 +122,7 @@ const App = () => {
       className="App"
     >
       <div
-        className='navbar bg-base-300'
+        className='navbar bg-base-300 text-nowrap overflow-x-hidden'
       >
         {
           title === AppTitle &&

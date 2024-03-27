@@ -41,10 +41,10 @@ export const Home: FC<HomeProps> = ({
                 className='card bg-base-100 shadow-xl'
             >
                 <div
-                    className='card-body p-3'
+                    className='card-body overflow-x-hidden p-3'
                 >
                     <h2
-                        className='card-title'
+                        className='card-title text-nowrap'
                     >
                         General
                     </h2>
@@ -76,10 +76,10 @@ export const Home: FC<HomeProps> = ({
                 className='card bg-base-100 shadow-xl'
             >
                 <div
-                    className='card-body p-3'
+                    className='card-body overflow-x-hidden p-3'
                 >
                     <h2
-                        className='card-title'
+                        className='card-title text-nowrap'
                     >
                         Leaderboard
                     </h2>
@@ -125,10 +125,10 @@ export const Home: FC<HomeProps> = ({
                 className='card bg-base-100 shadow-xl'
             >
                 <div
-                    className='card-body p-3'
+                    className='card-body overflow-x-hidden p-3'
                 >
                     <h2
-                        className='card-title'
+                        className='card-title text-nowrap'
                     >
                         Piss Boys
                     </h2>
@@ -170,10 +170,10 @@ export const Home: FC<HomeProps> = ({
                 className='card bg-base-100 shadow-xl'
             >
                 <div
-                    className='card-body p-3'
+                    className='card-body overflow-x-hidden p-3'
                 >
                     <h2
-                        className='card-title'
+                        className='card-title text-nowrap'
                     >
                         Best/Worst Players
                     </h2>
