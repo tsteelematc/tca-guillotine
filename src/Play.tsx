@@ -175,7 +175,11 @@ export const Play: FC<PlayProps> = ({
                           onChange={() => setNotableNoblesWithPlayers(
                             notableNoblesWithPlayers.map(z => ({
                               nobleName: z.nobleName
-                              , playerName: y.nobleName === z.nobleName ? x : z.playerName
+                              , playerName: y.nobleName === z.nobleName 
+                                ? z.playerName === x // already checked for this user so make it blank, like the noble has not been collected
+                                  ? ""
+                                  : x 
+                                : z.playerName
                             }))
                           )}
                         />
