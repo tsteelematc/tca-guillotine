@@ -37,6 +37,8 @@ export const Play: FC<PlayProps> = ({
       )
   );
 
+  const [playerPoints, setPlayerPoints] = useState<[string, number][]>(chosenPlayers.map(x => [x, 0]));
+
   useEffect(
     () => setTitle("Play Guillotine")
     , []
@@ -75,7 +77,67 @@ export const Play: FC<PlayProps> = ({
                 {x}
               </h2>
               <p
-                className='text-neutral-content'
+                className='text-primary'
+              >
+                Points
+              </p>
+              <div
+                className="flex gap-1 items-center mb-5"
+              >
+                <button
+                  className='btn btn-outline btn-error font-bold text-lg'
+                  onClick={() => setPlayerPoints(
+                    playerPoints.map(y => [
+                      y[0]
+                      , y[0] === x ? y[1] - 5 : y[1]
+                    ])
+                  )}
+                >
+                  - 5
+                </button>
+                <button
+                  className='btn btn-outline btn-error font-bold text-lg'
+                  onClick={() => setPlayerPoints(
+                    playerPoints.map(y => [
+                      y[0]
+                      , y[0] === x ? y[1] - 1 : y[1]
+                    ])
+                  )}
+                >
+                  - 1
+                </button>
+                <h2
+                  className='text-4xl font-bold mx-5 min-w-10 text-right'
+                >
+                  {
+                    playerPoints.find(y => y[0] === x)![1]
+                  }
+                </h2>
+                <button
+                  className='btn btn-outline btn-success font-bold text-lg'
+                  onClick={() => setPlayerPoints(
+                    playerPoints.map(y => [
+                      y[0]
+                      , y[0] === x ? y[1] + 1 : y[1]
+                    ])
+                  )}
+                >
+                  + 1
+                </button>
+                <button
+                  className='btn btn-outline btn-success font-bold text-lg'
+                  onClick={() => setPlayerPoints(
+                    playerPoints.map(y => [
+                      y[0]
+                      , y[0] === x ? y[1] + 5 : y[1]
+                    ])
+                  )}
+                >
+                  + 5
+                </button>
+              </div>
+              <p
+                className='text-primary'
               >
                 Notable Nobles
               </p>
@@ -85,6 +147,7 @@ export const Play: FC<PlayProps> = ({
                 {
                   notableNoblesWithPlayers.map(y => (
                     <div
+                      key={y.nobleName}
                       className="form-control"
                     >
                       <label
