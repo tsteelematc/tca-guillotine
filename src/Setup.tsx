@@ -29,20 +29,37 @@ export const Setup: FC<SetupProps> = ({
 
     const validateAndAddNewPlayer = () => {
 
+        const existingPlayer = availablePlayers.find(x => x.name.toUpperCase() === newPlayerName.toUpperCase());
+
         if (
             newPlayerName.length > 0
-            && !availablePlayers.some(x => x.name.toUpperCase() === newPlayerName.toUpperCase())
         ) {
-            setAvailablePlayers(
-                [
-                    ...availablePlayers
-                    , {
-                        name: newPlayerName
-                        , checked: true
-                    }
-                ].sort((a, b) => a.name.localeCompare(b.name))
-            );
 
+            if (existingPlayer) { 
+
+                // Check the existing player
+                setAvailablePlayers(
+                    availablePlayers.map(x => ({
+                        ...x 
+                        , checked: x.name === existingPlayer.name 
+                            ? true
+                            : x.checked
+                    }))
+                );
+
+            } else {
+
+                // Add new player...
+                setAvailablePlayers(
+                    [
+                        ...availablePlayers
+                        , {
+                            name: newPlayerName
+                            , checked: true
+                        }
+                    ].sort((a, b) => a.name.localeCompare(b.name))
+                );
+            }
             setNewPlayerName("");
         }
     };
@@ -76,33 +93,33 @@ export const Setup: FC<SetupProps> = ({
                     <div
                         className='flex items-center mb-5'
                     >
-                        <input 
-                            type="text" 
-                            placeholder="Enter new player name" 
+                        <input
+                            type="text"
+                            placeholder="Enter new player name"
                             className="input input-bordered w-full max-w-xs"
-                            value={newPlayerName} 
+                            value={newPlayerName}
                             onChange={(e) => setNewPlayerName(e.target.value)}
-                        />       
+                        />
                         <button
                             className='btn btn-md btn-primary ml-3'
                             onClick={validateAndAddNewPlayer}
                         >
                             Add
-                        </button>                 
+                        </button>
                     </div>
                     {
                         availablePlayers.map(x => (
-                            <div 
+                            <div
                                 className="form-control mb-5"
                                 key={x.name}
                             >
-                                <label 
+                                <label
                                     className="flex items-center cursor-pointer"
                                 >
-                                    <input 
-                                        type="checkbox" 
+                                    <input
+                                        type="checkbox"
                                         className="checkbox checkbox-lg checkbox-primary"
-                                        checked={x.checked} 
+                                        checked={x.checked}
                                         onChange={() => setAvailablePlayers([
                                             ...availablePlayers.map(y => ({
                                                 name: y.name
@@ -112,11 +129,11 @@ export const Setup: FC<SetupProps> = ({
                                             }))
                                         ])}
                                     />
-                                    <span 
+                                    <span
                                         className="label-text ml-5 text-lg"
                                     >
                                         {x.name}
-                                    </span> 
+                                    </span>
                                 </label>
                             </div>
                         ))
