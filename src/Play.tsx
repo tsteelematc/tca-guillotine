@@ -40,7 +40,7 @@ export const Play: FC<PlayProps> = ({
   const [playerPoints, setPlayerPoints] = useState<[string, number][]>(chosenPlayers.map(x => [x, 0]));
 
   useEffect(
-    () => setTitle("Play Guillotine")
+    () => setTitle("Play Guillotine...")
     , []
   );
 
@@ -64,6 +64,31 @@ export const Play: FC<PlayProps> = ({
     <div
       className='flex flex-col gap-3'
     >
+      <div
+        className='card bg-base-100 shadow-xl'
+      >
+        <div
+          className='card-body overflow-x-hidden p-3'
+        >
+          <ul
+            className='text-sm pt-3 pb-0'
+          >
+            <li>
+              . Track some game info below
+            </li>
+            <li>
+              . Then choose a winner
+            </li>
+            <li>
+              . Or quit to not save your game results
+            </li>
+            <li>
+              <a className="btn btn-link p-0 m-0 text-md" onClick={() => nav(-2)}>Quit</a>
+            </li>
+          </ul>
+
+        </div>
+      </div>
       {
         chosenPlayers.map(x => (
           <div
