@@ -8,14 +8,14 @@ interface HomeProps {
     leaderboardData: LeaderboardEntry[];
     setTitle: (t: string) => void;
     generalFacts: GeneralFacts;
-    pissBoyLeaderbaord: [string, number][];
+    pissBoyLeaderboard: [string, number][];
 }
 
 export const Home: FC<HomeProps> = ({
     leaderboardData
     , setTitle
     , generalFacts
-    , pissBoyLeaderbaord
+    , pissBoyLeaderboard
 }) => {
 
     useEffect(
@@ -131,7 +131,7 @@ export const Home: FC<HomeProps> = ({
                         Piss Boys
                     </h2>
                     {
-                        pissBoyLeaderbaord.length > 0
+                        pissBoyLeaderboard.length > 0
                             ? (
                                 <table
                                     className='table'
@@ -144,7 +144,7 @@ export const Home: FC<HomeProps> = ({
                                     </thead>
                                     <tbody>
                                         {
-                                            pissBoyLeaderbaord.map(pblb => (
+                                            pissBoyLeaderboard.map(pblb => (
                                                 <tr
                                                     key={pblb[0]}
                                                 >

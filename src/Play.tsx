@@ -23,13 +23,7 @@ export const Play: FC<PlayProps> = ({
 }) => {
 
   const [start, setStart] = useState(new Date().toISOString());
-  // console.log(start);
 
-  // const start = new Date().toISOString();
-
-  const [turnNumber, setTurnNumber] = useState(1);
-
-  // const [pissBoyPlayer, setPissBoyPlayer] = useState("");
   const [notableNoblesWithPlayers, setNotableNoblesWithPlayers] = useState(
     notableNobles
       .sort(
@@ -128,20 +122,6 @@ export const Play: FC<PlayProps> = ({
           </div>
         ))
       }
-      <p
-        className='text-xs'
-      >
-        Play the game and tap the app ! ! !
-      </p>
-      <p>
-        Current Turn: {turnNumber}
-      </p>
-      <button
-        className='btn btn-link'
-        onClick={() => setTurnNumber(turnNumber + 1)}
-      >
-        Next Turn
-      </button>
     </div>
   );
 };

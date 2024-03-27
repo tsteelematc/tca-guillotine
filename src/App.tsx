@@ -80,7 +80,7 @@ const App = () => {
         leaderboardData={getLeaderboard(gameResults)}
         generalFacts={getGeneralFacts(gameResults)}
         setTitle={setTitle}
-        pissBoyLeaderbaord={getPissBoyLeaderboard(gameResults)}
+        pissBoyLeaderboard={getPissBoyLeaderboard(gameResults)}
       />
     },
     {
