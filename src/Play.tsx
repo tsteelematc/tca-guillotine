@@ -8,6 +8,14 @@ interface PlayProps {
   chosenPlayers: string[];
 }
 
+const notableNobles = [
+  "Piss Boy"
+  , "King Louis IV"
+  , "Marie Antionette"
+  , "Count"
+  , "Countess"
+];
+
 export const Play: FC<PlayProps> = ({
   addNewGameResult
   , setTitle
@@ -15,6 +23,25 @@ export const Play: FC<PlayProps> = ({
 }) => {
 
   const [start, setStart] = useState(new Date().toISOString());
+  // console.log(start);
+
+  // const start = new Date().toISOString();
+
+  const [turnNumber, setTurnNumber] = useState(1);
+
+  // const [pissBoyPlayer, setPissBoyPlayer] = useState("");
+  const [notableNoblesWithPlayers, setNotableNoblesWithPlayers] = useState(
+    notableNobles
+      .sort(
+        (a, b) => a.localeCompare(b)
+      )
+      .map(
+        x => ({
+          nobleName: x
+          , playerName: ""
+        })
+      )
+  );
 
   useEffect(
     () => setTitle("Play Guillotine")
@@ -31,6 +58,7 @@ export const Play: FC<PlayProps> = ({
       , players: chosenPlayers
       , start: start
       , end: new Date().toISOString()
+      , notableNoblesWithPlayers: notableNoblesWithPlayers
     });
     nav(-2);
   };
@@ -42,7 +70,6 @@ export const Play: FC<PlayProps> = ({
       {
         chosenPlayers.map(x => (
           <div
-            key={x}
             className='card bg-base-100 shadow-xl'
           >
             <div
@@ -53,16 +80,46 @@ export const Play: FC<PlayProps> = ({
               >
                 {x}
               </h2>
-              <div
-                className='flex flex-col gap-3 mt-3'
+              <p
+                className='text-neutral-content'
               >
-                <p>Foo</p>
-                <p>Bar</p>
-                <p>Cat</p>
+                Notable Nobles
+              </p>
+              <div
+                className='flex flex-col my-5 gap-5'
+              >
+                {
+                  notableNoblesWithPlayers.map(y => (
+                    <div
+                      className="form-control"
+                    >
+                      <label
+                        className="flex items-center cursor-pointer"
+                      >
+                        <input
+                          type="checkbox"
+                          className="checkbox"
+                          checked={y.playerName === x}
+                          onChange={() => setNotableNoblesWithPlayers(
+                            notableNoblesWithPlayers.map(z => ({
+                              nobleName: z.nobleName
+                              , playerName: y.nobleName === z.nobleName ? x : z.playerName
+                            }))
+                          )}
+                        />
+                        <span
+                          className="label-text ml-5 text-md"
+                        >
+                          {y.nobleName}
+                        </span>
+                      </label>
+                    </div>
+                  ))
+                }
               </div>
               <button
                 key={x}
-                className="btn btn-outline btn-primary my-3"
+                className="btn btn-outline btn-primary"
                 onClick={() => gameOver(x)}
               >
                 {x} Won
@@ -71,6 +128,20 @@ export const Play: FC<PlayProps> = ({
           </div>
         ))
       }
+      <p
+        className='text-xs'
+      >
+        Play the game and tap the app ! ! !
+      </p>
+      <p>
+        Current Turn: {turnNumber}
+      </p>
+      <button
+        className='btn btn-link'
+        onClick={() => setTurnNumber(turnNumber + 1)}
+      >
+        Next Turn
+      </button>
     </div>
   );
 };

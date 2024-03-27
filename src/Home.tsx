@@ -8,12 +8,14 @@ interface HomeProps {
     leaderboardData: LeaderboardEntry[];
     setTitle: (t: string) => void;
     generalFacts: GeneralFacts;
+    pissBoyLeaderbaord: [string, number][];
 }
 
-export const Home: FC<HomeProps> = ({ 
+export const Home: FC<HomeProps> = ({
     leaderboardData
     , setTitle
-    , generalFacts 
+    , generalFacts
+    , pissBoyLeaderbaord
 }) => {
 
     useEffect(
@@ -81,39 +83,84 @@ export const Home: FC<HomeProps> = ({
                     </h2>
                     {
                         leaderboardData.length > 0
-                        ? (
-                            <table
-                                className='table'
-                            >
-                                <thead>
-                                    <tr>
-                                        <th>W</th>
-                                        <th>L</th>
-                                        <th>AVG</th>
-                                        <th>PLAYER</th>
-                                    </tr>
-                                </thead>
-                                <tbody>
-                                    {
-                                        leaderboardData.map(lbe => (
-                                            <tr
-                                                key={lbe.name}
-                                            >
-                                                <td>{ lbe.wins }</td>
-                                                <td>{ lbe.losses }</td>
-                                                <td>{ lbe.avg.toFixed(3) }</td>
-                                                <td>{ lbe.name }</td>
-                                            </tr>
-                                        ))
-                                    }
-                                </tbody>
-                            </table>
-                        )
-                        : (
-                            <p>
-                                Play a game to see the leaderboard!
-                            </p>
-                        )
+                            ? (
+                                <table
+                                    className='table'
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th>W</th>
+                                            <th>L</th>
+                                            <th>AVG</th>
+                                            <th>PLAYER</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            leaderboardData.map(lbe => (
+                                                <tr
+                                                    key={lbe.name}
+                                                >
+                                                    <td>{lbe.wins}</td>
+                                                    <td>{lbe.losses}</td>
+                                                    <td>{lbe.avg.toFixed(3)}</td>
+                                                    <td>{lbe.name}</td>
+                                                </tr>
+                                            ))
+                                        }
+                                    </tbody>
+                                </table>
+                            )
+                            : (
+                                <p>
+                                    Play a game to see the leaderboard!
+                                </p>
+                            )
+                    }
+                </div>
+            </div>
+            <div
+                className='card bg-base-100 shadow-xl'
+            >
+                <div
+                    className='card-body p-3'
+                >
+                    <h2
+                        className='card-title'
+                    >
+                        Piss Boys
+                    </h2>
+                    {
+                        pissBoyLeaderbaord.length > 0
+                            ? (
+                                <table
+                                    className='table'
+                                >
+                                    <thead>
+                                        <tr>
+                                            <th>PLAYER</th>
+                                            <th>#</th>
+                                        </tr>
+                                    </thead>
+                                    <tbody>
+                                        {
+                                            pissBoyLeaderbaord.map(pblb => (
+                                                <tr
+                                                    key={pblb[0]}
+                                                >
+                                                    <td>{pblb[0]}</td>
+                                                    <td>{pblb[1]}</td>
+                                                </tr>
+                                            ))
+                                        }
+                                    </tbody>
+                                </table>
+                            )
+                            : (
+                                <p>
+                                    Play a game to see the Piss Boys!
+                                </p>
+                            )
                     }
                 </div>
             </div>

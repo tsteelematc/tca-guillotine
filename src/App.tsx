@@ -10,36 +10,49 @@ import {
 import { Home, AppTitle } from './Home';
 import { Setup } from './Setup';
 import { Play } from './Play';
-import { 
+import {
   GameResult
-  , getLeaderboard 
+  , getLeaderboard
   , getGeneralFacts
   , getPreviousPlayers
+  , getPissBoyLeaderboard
 } from './GameResults';
 
 const dummyGameResults: GameResult[] = [
   {
-      winner: "Tom"
-      , players: [
-          "Tom"
-          , "Batu"
-          , "Julia"
-          , "Melisa"
-          , "John"
-      ]
-      , start: "2024-02-28T18:10:32.123Z"
-      , end: "2024-02-28T18:15:34.123Z"
+    winner: "Tom"
+    , players: [
+      "Tom"
+      , "Batu"
+      , "Julia"
+      , "Melisa"
+      , "John"
+    ]
+    , start: "2024-02-28T18:10:32.123Z"
+    , end: "2024-02-28T18:15:34.123Z"
+    , notableNoblesWithPlayers: [
+      {
+        nobleName: "Piss Boy"
+        , playerName: "Tom"
+      }
+    ]
   }
   , {
-      winner: "John"
-      , players: [
-          "Batu"
-          , "Julia"
-          , "Melisa"
-          , "John"
-      ]
-      , start: "2024-02-28T18:20:32.123Z"
-      , end: "2024-02-28T18:47:34.123Z"
+    winner: "John"
+    , players: [
+      "Batu"
+      , "Julia"
+      , "Melisa"
+      , "John"
+    ]
+    , start: "2024-02-28T18:20:32.123Z"
+    , end: "2024-02-28T18:47:34.123Z"
+    , notableNoblesWithPlayers: [
+      {
+        nobleName: "Piss Boy"
+        , playerName: "John"
+      }
+    ]
   }
 ];
 
@@ -67,11 +80,12 @@ const App = () => {
         leaderboardData={getLeaderboard(gameResults)}
         generalFacts={getGeneralFacts(gameResults)}
         setTitle={setTitle}
+        pissBoyLeaderbaord={getPissBoyLeaderboard(gameResults)}
       />
     },
     {
       path: "/setup",
-      element: <Setup 
+      element: <Setup
         setTitle={setTitle}
         previousPlayers={getPreviousPlayers(gameResults)}
         setChosenPlayers={setChosenPlayers}
@@ -79,17 +93,17 @@ const App = () => {
     },
     {
       path: "/play",
-      element: <Play 
-          addNewGameResult={addNewGameResult}
-          setTitle={setTitle}
-          chosenPlayers={chosenPlayers}
-        />
+      element: <Play
+        addNewGameResult={addNewGameResult}
+        setTitle={setTitle}
+        chosenPlayers={chosenPlayers}
+      />
     },
-  ]);  
+  ]);
 
 
   return (
-    <div 
+    <div
       className="App"
     >
       <div
@@ -104,14 +118,14 @@ const App = () => {
         <span
           className='text-lg font-bold ml-3'
         >
-          { title }
+          {title}
         </span>
       </div>
       <div
         className='p-3'
       >
-        <RouterProvider 
-          router={router} 
+        <RouterProvider
+          router={router}
         />
       </div>
     </div>
