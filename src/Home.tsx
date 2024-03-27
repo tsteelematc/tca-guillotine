@@ -10,6 +10,7 @@ interface HomeProps {
     generalFacts: GeneralFacts;
     pissBoyLeaderboard: [string, number][];
     pointFunFacts: PointFunFacts;
+    notableNobleFunFacts: { nobles: string, inPercentOfWins: string }[];
 }
 
 export const Home: FC<HomeProps> = ({
@@ -18,6 +19,7 @@ export const Home: FC<HomeProps> = ({
     , generalFacts
     , pissBoyLeaderboard
     , pointFunFacts
+    , notableNobleFunFacts
 }) => {
 
     useEffect(
@@ -229,30 +231,16 @@ export const Home: FC<HomeProps> = ({
                                         </tr>
                                     </thead>
                                     <tbody>
-                                        <tr>
-                                            <td>King Louis XVI</td>
-                                            <td>100%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Marie Antionette</td>
-                                            <td>100%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>King Louis XVI + Marie Antionette</td>
-                                            <td>100%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Count</td>
-                                            <td>100%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Countess</td>
-                                            <td>100%</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Count + Countess</td>
-                                            <td>100%</td>
-                                        </tr>
+                                        {
+                                            notableNobleFunFacts.map(x => (
+                                                <tr
+                                                    key={x.nobles}
+                                                >
+                                                    <td>{x.nobles}</td>
+                                                    <td>{x.inPercentOfWins}%</td>
+                                                </tr>
+                                            ))
+                                        }
                                     </tbody>
                                 </table>
                             )

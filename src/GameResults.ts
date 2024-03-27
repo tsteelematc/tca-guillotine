@@ -135,7 +135,35 @@ export const getPointFunFacts = (results: GameResult[]): PointFunFacts => {
       .filter((x, i, a) => a.indexOf(x) === i) // Remove dupes
       .join(', ')
   };
+};
 
+export const getNotableNobleFunFacts = (results: GameResult[]) => {
+  return [
+    {
+      nobles: "King Louis XVI"
+      , inPercentOfWins: getPercentOfWinsForNobles(results, ["King Louis XVI"])
+    }
+    , {
+      nobles: "Marie Antionette"
+      , inPercentOfWins: getPercentOfWinsForNobles(results, ["Marie Antionette"])
+    }
+    , {
+      nobles: "King Louis XVI + Marie Antionette"
+      , inPercentOfWins: getPercentOfWinsForNobles(results, ["King Louis XVI", "Marie Antionette"])
+    }
+    , {
+      nobles: "Count"
+      , inPercentOfWins: getPercentOfWinsForNobles(results, ["Count"])
+    }
+    , {
+      nobles: "Countess"
+      , inPercentOfWins: getPercentOfWinsForNobles(results, ["Countess"])
+    }
+    , {
+      nobles: "Count + Countess"
+      , inPercentOfWins: getPercentOfWinsForNobles(results, ["Count", "Countess"])
+    }
+    ];
 };
 
 //
@@ -159,4 +187,32 @@ const getLeaderboardEntryForPlayer = (
 
     name: player,
   };
+};
+
+const getPercentOfWinsForNobles = (
+  results: GameResult[]
+  , nobleNames: string[]
+) => {
+
+  const winnersNotableNobles = results.map(
+    x => x.notableNoblesWithPlayers
+      .filter(y => y.playerName === x.winner)
+      .map(y => y.nobleName)
+  );
+
+  console.log('foo', winnersNotableNobles);
+
+  const noblesToCheck = new Set(nobleNames);
+
+  const noblesInWinnersNotableNobles = winnersNotableNobles
+    .filter(
+      x => {
+        console.log('tjs', [...noblesToCheck], x);
+        return (noblesToCheck as any).isSubsetOf(new Set(x));
+      }
+    ).length
+  ;
+
+  return ((noblesInWinnersNotableNobles / winnersNotableNobles.length) * 100).toFixed(2);
+
 };

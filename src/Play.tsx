@@ -10,7 +10,7 @@ interface PlayProps {
 
 const notableNobles = [
   "Piss Boy"
-  , "King Louis IV"
+  , "King Louis XVI"
   , "Marie Antionette"
   , "Count"
   , "Countess"

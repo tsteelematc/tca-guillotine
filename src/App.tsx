@@ -17,6 +17,7 @@ import {
   , getPreviousPlayers
   , getPissBoyLeaderboard
   , getPointFunFacts
+  , getNotableNobleFunFacts
 } from './GameResults';
 
 const dummyGameResults: GameResult[] = [
@@ -33,7 +34,15 @@ const dummyGameResults: GameResult[] = [
     , end: "2024-02-28T18:15:34.123Z"
     , notableNoblesWithPlayers: [
       {
+        nobleName: "King Louis XVI"
+        , playerName: "Batu"
+      }
+      , {
         nobleName: "Piss Boy"
+        , playerName: "Tom"
+      }
+      , {
+        nobleName: "Marie Antionette"
         , playerName: "Tom"
       }
     ]
@@ -43,8 +52,8 @@ const dummyGameResults: GameResult[] = [
       , ["Julia", 3]
       , ["Melisa", 10]
       , ["John", 10]
-  ]
-}
+    ]
+  }
   , {
     winner: "John"
     , players: [
@@ -60,12 +69,20 @@ const dummyGameResults: GameResult[] = [
         nobleName: "Piss Boy"
         , playerName: "John"
       }
+      , {
+        nobleName: "King Louis XVI"
+        , playerName: "John"
+      }
+      , {
+        nobleName: "Marie Antionette"
+        , playerName: "John"
+      }
     ]
     , playerPoints: [
-        ["Batu", 3]
-        , ["Julia", 10]
-        , ["Melisa", 10]
-        , ["John", 20]
+      ["Batu", 3]
+      , ["Julia", 10]
+      , ["Melisa", 10]
+      , ["John", 20]
     ]
   }
 ];
@@ -96,6 +113,7 @@ const App = () => {
         setTitle={setTitle}
         pissBoyLeaderboard={getPissBoyLeaderboard(gameResults)}
         pointFunFacts={getPointFunFacts(gameResults)}
+        notableNobleFunFacts={getNotableNobleFunFacts(gameResults)}
       />
     },
     {
