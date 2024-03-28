@@ -128,7 +128,7 @@ export const getPointFunFacts = (results: GameResult[]): PointFunFacts => {
       .map(x => x[0])
       .filter((x, i, a) => a.indexOf(x) === i) // Remove dupes
       .join(', ')
-    ,minPointValue
+    , minPointValue
     , minPointPlayers: allPlayerPoints
       .filter(x => x[1] === minPointValue)
       .map(x => x[0])
@@ -199,17 +199,11 @@ const getPercentOfWinsForNobles = (
       .filter(y => y.playerName === x.winner)
       .map(y => y.nobleName)
   );
-
-  console.log('foo', winnersNotableNobles);
-
   const noblesToCheck = new Set(nobleNames);
 
   const noblesInWinnersNotableNobles = winnersNotableNobles
     .filter(
-      x => {
-        console.log('tjs', [...noblesToCheck], x);
-        return (noblesToCheck as any).isSubsetOf(new Set(x));
-      }
+      x => (noblesToCheck as any).isSubsetOf(new Set(x))
     ).length
   ;
 
