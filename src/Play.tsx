@@ -40,7 +40,7 @@ export const Play: FC<PlayProps> = ({
   const [playerPoints, setPlayerPoints] = useState<[string, number][]>(chosenPlayers.map(x => [x, 0]));
 
   useEffect(
-    () => setTitle("Play Guillotine...")
+    () => setTitle("Enter scores, notable nobles & winner...")
     , []
   );
 
@@ -64,34 +64,10 @@ export const Play: FC<PlayProps> = ({
     <div
       className='flex flex-col gap-3'
     >
-      <div
-        className='card bg-base-100 shadow-xl'
-      >
-        <div
-          className='card-body overflow-x-hidden p-3'
-        >
-          <ul
-            className='text-sm pt-3 pb-0'
-          >
-            <li>
-              . Track some game info below
-            </li>
-            <li>
-              . Then choose a winner
-            </li>
-            <li>
-              . Or quit to not save your game results
-            </li>
-            <li>
-              <a className="btn btn-link p-0 m-0 text-md" onClick={() => nav(-2)}>Quit</a>
-            </li>
-          </ul>
-
-        </div>
-      </div>
       {
         chosenPlayers.map(x => (
           <div
+            key={x}
             className='card bg-base-100 shadow-xl'
           >
             <div
@@ -175,10 +151,10 @@ export const Play: FC<PlayProps> = ({
                           onChange={() => setNotableNoblesWithPlayers(
                             notableNoblesWithPlayers.map(z => ({
                               nobleName: z.nobleName
-                              , playerName: y.nobleName === z.nobleName 
+                              , playerName: y.nobleName === z.nobleName
                                 ? z.playerName === x // already checked for this user so make it blank, like the noble has not been collected
                                   ? ""
-                                  : x 
+                                  : x
                                 : z.playerName
                             }))
                           )}
@@ -204,6 +180,25 @@ export const Play: FC<PlayProps> = ({
           </div>
         ))
       }
+      <div
+        className='card bg-base-100 shadow-xl mb-5'
+      >
+        <div
+          className='card-body overflow-x-hidden p-3 text-lg text-center'
+        >
+          <a 
+            className="btn btn-link text-lg" 
+            onClick={() => nav(-2)}
+          >
+            Quit
+          </a>
+          <p
+            className=''
+          >
+            Pretend this game never happened : - )
+          </p>
+        </div>
+      </div>
     </div>
   );
 };
