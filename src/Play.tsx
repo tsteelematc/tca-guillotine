@@ -40,7 +40,7 @@ export const Play: FC<PlayProps> = ({
   const [playerPoints, setPlayerPoints] = useState<[string, number][]>(chosenPlayers.map(x => [x, 0]));
 
   useEffect(
-    () => setTitle("Enter scores, notable nobles & winner...")
+    () => setTitle("Enter scores, nobles & winner...")
     , []
   );
 
@@ -195,7 +195,7 @@ export const Play: FC<PlayProps> = ({
           <p
             className=''
           >
-            Pretend this game never happened : - )
+            Don't record these game results
           </p>
         </div>
       </div>
