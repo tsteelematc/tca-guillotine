@@ -178,7 +178,7 @@ const App = () => {
         </div>
       </div>
       <div
-        className='p-3'
+        className='p-3 min-h-screen'
       >
         <RouterProvider
           router={router}
