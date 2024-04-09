@@ -54,6 +54,12 @@ export const Play: FC<PlayProps> = ({
               >
                 {x}
               </h2>
+              <p>
+                Put other controls here...
+              </p>
+              <p>
+                And probably need some local state to control the controls...
+              </p>
               <button
                 key={x}
                 className="btn btn-outline btn-primary"
