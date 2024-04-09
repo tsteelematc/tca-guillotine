@@ -18,6 +18,7 @@ import {
   , getPissBoyLeaderboard
   , getPointFunFacts
   , getNotableNobleFunFacts
+  , getAverageGameDurationsByPlayerCount
 } from './GameResults';
 
 const dummyGameResults: GameResult[] = [
@@ -116,6 +117,7 @@ const App = () => {
         pissBoyLeaderboard={getPissBoyLeaderboard(gameResults)}
         pointFunFacts={getPointFunFacts(gameResults)}
         notableNobleFunFacts={getNotableNobleFunFacts(gameResults)}
+        avgGameDurationsByPlayerCount={getAverageGameDurationsByPlayerCount(gameResults)}
       />
     },
     {

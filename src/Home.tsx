@@ -11,6 +11,10 @@ interface HomeProps {
     pissBoyLeaderboard: [string, number][];
     pointFunFacts: PointFunFacts;
     notableNobleFunFacts: { nobles: string, inPercentOfWins: string }[];
+    avgGameDurationsByPlayerCount: {
+        numberOfPlayers: number;
+        avgGameDuration: any;
+    }[];
 }
 
 export const Home: FC<HomeProps> = ({
@@ -20,7 +24,10 @@ export const Home: FC<HomeProps> = ({
     , pissBoyLeaderboard
     , pointFunFacts
     , notableNobleFunFacts
+    , avgGameDurationsByPlayerCount
 }) => {
+
+    console.log(avgGameDurationsByPlayerCount);
 
     useEffect(
         () => setTitle(AppTitle)
