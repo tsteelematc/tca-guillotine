@@ -198,9 +198,7 @@ export const getAverageGameDurationsByPlayerCount = (grs: GameResult[]) => {
       .sort((a, b) => a[0] - b[0])
       .map(x => ({
           numberOfPlayers: x[0]
-          , avgGameDuration: formatterDefault(
-            getAvgGameDurationInMilliseconds(x[1])
-          )
+          , avgGameDuration: `${formatterDefault(getAvgGameDurationInMilliseconds(x[1]))} (${x[1].length})`
       }))
   ;
 };
