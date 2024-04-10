@@ -279,7 +279,7 @@ export const Home: FC<HomeProps> = ({
                                     <thead>
                                         <tr>
                                             <th># PLAYERS</th>
-                                            <th>AVG DURATION (# games)</th>
+                                            <th>AVG DURATION (GAMES)</th>
                                         </tr>
                                     </thead>
                                     <tbody>
