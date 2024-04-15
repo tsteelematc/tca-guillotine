@@ -20,6 +20,7 @@ import {
   , getNotableNobleFunFacts
   , getAverageGameDurationsByPlayerCount
 } from './GameResults';
+import { saveGameToCloud } from './tca-cloud-api';
 
 const dummyGameResults: GameResult[] = [
   {
@@ -100,12 +101,24 @@ const App = () => {
 
   const [darkMode, setDarkMode] = useState(false);
 
-  const addNewGameResult = (result: GameResult) => setGameResults(
-    [
-      ...gameResults
+  const addNewGameResult = async (result: GameResult) => {
+    
+    // Save the game result to the cloud.
+    await saveGameToCloud(
+      "tsteele@madisoncollege.edu"
+      , "tca-guillotine"
+      , result.end 
       , result
-    ]
-  );
+    );
+
+    // Optimistically update the lifted state.
+    setGameResults(
+      [
+        ...gameResults
+        , result
+      ]
+    )
+  };
 
   const router = createHashRouter([
     {
@@ -164,10 +177,10 @@ const App = () => {
           <label className="swap swap-rotate">
 
             {/* this hidden checkbox controls the state */}
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               checked={darkMode}
-              onChange={() => setDarkMode(!darkMode)} 
+              onChange={() => setDarkMode(!darkMode)}
             />
 
             {/* sun icon */}
