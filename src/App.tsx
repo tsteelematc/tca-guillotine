@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -20,7 +20,7 @@ import {
   , getNotableNobleFunFacts
   , getAverageGameDurationsByPlayerCount
 } from './GameResults';
-import { saveGameToCloud } from './tca-cloud-api';
+import { loadGamesFromCloud, saveGameToCloud } from './tca-cloud-api';
 
 const dummyGameResults: GameResult[] = [
   {
@@ -101,13 +101,36 @@ const App = () => {
 
   const [darkMode, setDarkMode] = useState(false);
 
+  useEffect(
+    () => {
+      const init = async () => {
+        if (!ignore) {
+          const cloudGameResults = await loadGamesFromCloud(
+            "tsteele@madisoncollege.edu"
+            , "tca-guillotine"
+          );
+
+          setGameResults(cloudGameResults);
+        }
+      };
+
+      let ignore = false;
+      init();
+
+      return () => {
+        ignore = true;
+      }
+    }
+    , []
+  );
+
   const addNewGameResult = async (result: GameResult) => {
-    
+
     // Save the game result to the cloud.
     await saveGameToCloud(
       "tsteele@madisoncollege.edu"
       , "tca-guillotine"
-      , result.end 
+      , result.end
       , result
     );
 
