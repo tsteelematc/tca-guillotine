@@ -244,8 +244,10 @@ const getPercentOfWinsForNobles = (
     ).length
   ;
 
-  return ((noblesInWinnersNotableNobles / winnersNotableNobles.length) * 100).toFixed(2);
-
+  return winnersNotableNobles.length > 0 
+    ? ((noblesInWinnersNotableNobles / winnersNotableNobles.length) * 100).toFixed(2) + '%'
+    : 'n/a'
+  ;
 };
 
 const getGameDurationInMilliseconds = (gr: GameResult) => Date.parse(gr.end) - Date.parse(gr.start);

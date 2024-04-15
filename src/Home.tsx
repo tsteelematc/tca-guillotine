@@ -244,7 +244,7 @@ export const Home: FC<HomeProps> = ({
                                                     key={x.nobles}
                                                 >
                                                     <td>{x.nobles}</td>
-                                                    <td>{x.inPercentOfWins}%</td>
+                                                    <td>{x.inPercentOfWins}</td>
                                                 </tr>
                                             ))
                                         }
