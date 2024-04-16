@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import logo from './logo.svg';
 import './App.css';
 
@@ -32,10 +32,12 @@ const App = () => {
 
   const [darkMode, setDarkMode] = useState(false);
 
+  const dialog = useRef(null);
+
   useEffect(
     () => {
       const init = async () => {
-        
+
         if (!ignore) {
           const cloudGameResults = await loadGamesFromCloud(
             "tsteele@madisoncollege.edu"
@@ -57,6 +59,8 @@ const App = () => {
   );
 
   const addNewGameResult = async (result: GameResult) => {
+
+    (dialog.current as any).showModal();
 
     // Save the game result to the cloud.
     await saveGameToCloud(
@@ -132,10 +136,10 @@ const App = () => {
           <label className="swap swap-rotate">
 
             {/* this hidden checkbox controls the state */}
-            <input 
-              type="checkbox" 
+            <input
+              type="checkbox"
               checked={darkMode}
-              onChange={() => setDarkMode(!darkMode)} 
+              onChange={() => setDarkMode(!darkMode)}
             />
 
             {/* sun icon */}
@@ -154,6 +158,20 @@ const App = () => {
           router={router}
         />
       </div>
+
+      <dialog ref={dialog} id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+        <div className="modal-box">
+          <h3 className="font-bold text-lg">Hello!</h3>
+          <p className="py-4">Press ESC key or click the button below to close</p>
+          <div className="modal-action">
+            <form method="dialog">
+              {/* if there is a button in form, it will close the modal */}
+              <button className="btn">Close</button>
+            </form>
+          </div>
+        </div>
+      </dialog>
+
     </div>
   );
 }
