@@ -1,15 +1,15 @@
 {
   "files": {
-    "main.css": "/tca-guillotine/static/css/main.ee4e6144.css",
-    "main.js": "/tca-guillotine/static/js/main.b2264eb9.js",
+    "main.css": "/tca-guillotine/static/css/main.18bf1025.css",
+    "main.js": "/tca-guillotine/static/js/main.b37a6664.js",
     "static/js/592.d7624ee2.chunk.js": "/tca-guillotine/static/js/592.d7624ee2.chunk.js",
     "index.html": "/tca-guillotine/index.html",
-    "main.ee4e6144.css.map": "/tca-guillotine/static/css/main.ee4e6144.css.map",
-    "main.b2264eb9.js.map": "/tca-guillotine/static/js/main.b2264eb9.js.map",
+    "main.18bf1025.css.map": "/tca-guillotine/static/css/main.18bf1025.css.map",
+    "main.b37a6664.js.map": "/tca-guillotine/static/js/main.b37a6664.js.map",
     "592.d7624ee2.chunk.js.map": "/tca-guillotine/static/js/592.d7624ee2.chunk.js.map"
   },
   "entrypoints": [
-    "static/css/main.ee4e6144.css",
-    "static/js/main.b2264eb9.js"
+    "static/css/main.18bf1025.css",
+    "static/js/main.b37a6664.js"
   ]
 }
