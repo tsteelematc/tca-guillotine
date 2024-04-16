@@ -244,7 +244,10 @@ const getPercentOfWinsForNobles = (
     ).length
   ;
 
-  return ((noblesInWinnersNotableNobles / winnersNotableNobles.length) * 100).toFixed(2);
+  return winnersNotableNobles.length > 0
+    ? ((noblesInWinnersNotableNobles / winnersNotableNobles.length) * 100).toFixed(2) + "%"
+    : "n/a"
+  ;
 
 };
 

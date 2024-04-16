@@ -22,78 +22,9 @@ import {
 } from './GameResults';
 import { saveGameToCloud } from './tca-cloud-api';
 
-const dummyGameResults: GameResult[] = [
-  {
-    winner: "Tom"
-    , players: [
-      "Tom"
-      , "Batu"
-      , "Julia"
-      , "Melisa"
-      , "John"
-    ]
-    , start: "2024-02-28T18:10:32.123Z"
-    , end: "2024-02-28T18:15:34.123Z"
-    , notableNoblesWithPlayers: [
-      {
-        nobleName: "King Louis XVI"
-        , playerName: "Batu"
-      }
-      , {
-        nobleName: "Piss Boy"
-        , playerName: "Tom"
-      }
-      , {
-        nobleName: "Marie Antionette"
-        , playerName: "Tom"
-      }
-    ]
-    , playerPoints: [
-      ["Tom", 25]
-      , ["Batu", 3]
-      , ["Julia", 3]
-      , ["Melisa", 10]
-      , ["John", 10]
-    ]
-  }
-  , {
-    winner: "John"
-    , players: [
-      "Batu"
-      , "Julia"
-      , "Melisa"
-      , "John"
-    ]
-    , start: "2024-02-28T18:20:32.123Z"
-    , end: "2024-02-28T18:47:34.123Z"
-    , notableNoblesWithPlayers: [
-      {
-        nobleName: "Piss Boy"
-        , playerName: "John"
-      }
-      , {
-        nobleName: "King Louis XVI"
-        , playerName: "John"
-      }
-      , {
-        nobleName: "Marie Antionette"
-        , playerName: "John"
-      }
-    ]
-    , playerPoints: [
-      ["Batu", 3]
-      , ["Julia", 10]
-      , ["Melisa", 10]
-      , ["John", 20]
-    ]
-  }
-];
-
 const App = () => {
 
-  // Uncomment this line to see app running without any game results...
-  // const [gameResults, setGameResults] = useState<GameResult[]>([]);
-  const [gameResults, setGameResults] = useState<GameResult[]>(dummyGameResults);
+  const [gameResults, setGameResults] = useState<GameResult[]>([]);
 
   const [title, setTitle] = useState(AppTitle);
 
