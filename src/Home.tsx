@@ -71,11 +71,11 @@ export const Home: FC<HomeProps> = ({
                             </tr>
                             <tr>
                                 <td>Shortest Game</td>
-                                <td>{generalFacts.shortestGame}</td>
+                                <td>{generalFacts.longestGame}</td>
                             </tr>
                             <tr>
                                 <td>Longest Game</td>
-                                <td>{generalFacts.longestGame}</td>
+                                <td>{generalFacts.shortestGame}</td>
                             </tr>
                         </tbody>
                     </table>
