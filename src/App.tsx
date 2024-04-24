@@ -45,6 +45,9 @@ const App = () => {
 
         if (!ignore) {
 
+          const savedDarkMode = await localforage.getItem<boolean>("darkMode") ?? false;
+          setDarkMode(savedDarkMode);
+
           const savedEmail = await localforage.getItem<string>("email") ?? "";
 
           if (savedEmail.length > 0) {
@@ -167,7 +170,10 @@ const App = () => {
             <input
               type="checkbox"
               checked={darkMode}
-              onChange={() => setDarkMode(!darkMode)}
+              onChange={async () => {
+                await localforage.setItem<boolean>("darkMode", !darkMode)
+                setDarkMode(!darkMode);
+              }}
             />
 
             {/* sun icon */}
